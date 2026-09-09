@@ -11,6 +11,11 @@ html, body{
     perspective: 800px;
     height: 100%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+img{
+    max-width: 100%;
+    display: block;
 }
 *::selection{
     background-color: #fff;
@@ -30,7 +35,22 @@ body::-webkit-scrollbar-thumb{
 a{
     text-decoration: none;
     color: inherit;
-    cursor: pointer;
+}
+
+/* Hide the browser's native cursor (arrow, I-beam over text, etc.) so only
+   the custom green-dot cursor shows. Scoped to devices that actually have
+   a mouse — touchscreens never had a visible native cursor anyway, and
+   hiding "cursor" there is meaningless since #cursor/#cursor-blur never
+   get positioned (no mousemove events fire on touch). */
+@media (hover: hover) and (pointer: fine){
+    *{
+        cursor: none !important;
+    }
+}
+@media (hover: none), (pointer: coarse){
+    #cursor, #cursor-blur{
+        display: none;
+    }
 }
 
 /* Form element reset — needed for the newsletter signup */
@@ -59,7 +79,9 @@ input, button{
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.2s ease, background-color 0.3s ease, border 0.3s ease;
+    z-index: 999;
     pointer-events: none;
 }
 #cursor-blur{
@@ -70,6 +92,7 @@ input, button{
     position: fixed;
     top: 0;
     left: 0;
+    transform: translate(-50%, -50%);
     filter: blur(40px);
     z-index: 9;
     pointer-events: none;
@@ -372,7 +395,7 @@ video{
     justify-content: center;
     padding: 100px 20px;
 }
-#page3>p{
+#page3>blockquote{
     font-size: 35px;
     font-weight: 700;
     width: 55%;
@@ -515,6 +538,9 @@ video{
         padding-top: 15px;
         padding-bottom: 15px;
     }
+    #nav img{
+        height: 55px;
+    }
     .card{
         width: 45%;
     }
@@ -523,6 +549,10 @@ video{
     }
     #about-us-in{
         width: 60%;
+    }
+    #page1 #arrow{
+        height: 150px;
+        width: 150px;
     }
 }
 
@@ -569,7 +599,7 @@ video{
     #green-div h4{
         width: 100%;
     }
-    #page3>p{
+    #page3>blockquote{
         width: 90%;
         font-size: 24px;
         line-height: 32px;
@@ -591,5 +621,98 @@ video{
     }
     #footer>img{
         display: none;
+    }
+    #f2 h3, #f3 h3{
+        font-size: 22px;
+        white-space: normal;
+    }
+    #f4 h4, #f4 address{
+        white-space: normal;
+        font-size: 15px;
+    }
+    #nav img{
+        height: 45px;
+    }
+    #page1 #arrow{
+        height: 110px;
+        width: 110px;
+        left: 4%;
+    }
+    #page1 #arrow i{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px){
+    #page1 h1{
+        font-size: 52px;
+    }
+    #page1 h1::before{
+        -webkit-text-stroke: 1.5px #95c11e;
+    }
+    #page1 h2{
+        font-size: 22px;
+    }
+    #page1 p{
+        font-size: 16px;
+        width: 95%;
+    }
+    #nav{
+        gap: 14px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #nav h4{
+        font-size: 11px;
+    }
+    #nav img{
+        height: 36px;
+    }
+    #scroller h4{
+        font-size: 34px;
+    }
+    #about-us-in h3{
+        font-size: 28px;
+    }
+    #about-us-in p{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    #about-us img{
+        height: 140px;
+        width: 140px;
+    }
+    .overlay h4{
+        font-size: 22px;
+        white-space: normal;
+    }
+    .overlay p{
+        font-size: 15px;
+    }
+    #green-div h4{
+        font-size: 22px;
+        line-height: 30px;
+    }
+    #newsletter-form input{
+        min-width: 0;
+        width: 100%;
+    }
+    #newsletter-form{
+        width: 100%;
+    }
+    #page3>blockquote{
+        font-size: 18px;
+        line-height: 26px;
+        width: 100%;
+    }
+    #page4 h2{
+        font-size: 30px;
+    }
+    .elem{
+        height: 260px;
+        min-width: 0;
+    }
+    #f2 h3, #f3 h3{
+        font-size: 18px;
     }
 }
