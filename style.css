@@ -102,8 +102,8 @@ input, button{
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 0 150px;
-    gap: 50px;
+    padding: 0 clamp(20px, 6vw, 150px);
+    gap: clamp(14px, 2.5vw, 50px);
     position: fixed;
     top: 0;
     left: 0;
@@ -113,10 +113,13 @@ input, button{
 }
 #nav img{
     height: 75px;
+    flex-shrink: 0;
 }
 #nav h4{
     text-transform: uppercase;
     font-weight: 500;
+    font-size: clamp(11px, 1vw, 16px);
+    white-space: nowrap;
 }
 video{
     height: 100%;
